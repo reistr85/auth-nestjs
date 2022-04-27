@@ -8,7 +8,9 @@ export class AuthController {
   constructor(private loginUserCase: LoginUseCase) {}
 
   @Post('login')
-  public login(@Body() sessionData: SessionCreateDto): SessionCreatedDto {
+  public login(
+    @Body() sessionData: SessionCreateDto,
+  ): Promise<SessionCreatedDto> {
     return this.loginUserCase.execute(sessionData);
   }
 }

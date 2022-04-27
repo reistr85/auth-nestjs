@@ -1,28 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { UseCase } from 'src/core/base/use-case';
+import * as bcrypt from 'bcrypt';
 import { UserRepository } from 'src/core/repositories/user.repository';
 import { UserCreateMapper } from 'src/core/domain/mappers/users/user-create.mapper';
-import { UserCreatedMapper } from 'src/core/domain/mappers/users/user-created.mapper';
 import { UserCreateDto } from 'src/shared/dtos/auth/user-create.dto';
-import { UserCreatedDto } from 'src/shared/dtos/auth/user-created.dto';
+import { UserEntity } from 'src/core/domain/entities/user.entity';
 
 @Injectable()
-export class CreateUserUseCase implements UseCase<UserCreatedDto> {
+export class CreateUserUseCase {
   private userCreateMapper: UserCreateMapper;
-  private userCreatedMapper: UserCreatedMapper;
 
   constructor(private readonly repository: UserRepository) {
     this.userCreateMapper = new UserCreateMapper();
-    this.userCreatedMapper = new UserCreatedMapper();
   }
 
-  public execute(user: UserCreateDto): Observable<UserCreatedDto> {
+  public async execute(user: UserCreateDto): Promise<UserEntity> {
     const entity = this.userCreateMapper.mapFrom(user);
+    entity.password = await bcrypt.hash(user.password, 10);
 
-    return this.repository
-      .create(entity)
-      .pipe(map(this.userCreatedMapper.mapTo));
+    return this.repository.create(entity);
   }
 }

@@ -18,8 +18,6 @@ export class UserCreateMapper extends Mapper<UserCreateDto, UserEntity> {
     user.id = data.id;
     user.name = data.name;
     user.email = data.email;
-    user.password = data.password;
-
     return user;
   }
 }

@@ -6,4 +6,9 @@ import { UserRepository } from 'src/core/repositories/user.repository';
 @Injectable()
 export class UsersCacheMemoryRepository
   extends RepositoryCacheMemory<UserEntity>
-  implements UserRepository {}
+  implements UserRepository
+{
+  findByEmail(email: string): UserEntity {
+    return this.items.find((user) => user.email === email);
+  }
+}

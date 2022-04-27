@@ -1,4 +1,6 @@
 import { Repository } from '../base/repository';
 import { UserEntity } from '../domain/entities/user.entity';
 
-export abstract class UserRepository extends Repository<UserEntity> {}
+export abstract class UserRepository extends Repository<UserEntity> {
+  abstract findByEmail(email: string): UserEntity;
+}
