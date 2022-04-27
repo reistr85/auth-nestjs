@@ -18,6 +18,8 @@ export class RepositoryCacheMemory<
 
   public create(data: TEntity): Observable<TEntity> {
     data.id = 'sd54as654d65456sad4a56sd4';
+    data.created_at = new Date();
+    data.updated_at = new Date();
     const count = this.items.push(data);
 
     return of(this.items[count - 1]);

@@ -1,5 +1,5 @@
 import { Mapper } from 'src/core/base/mapper';
-import { UserCreateDto } from 'src/shared/dtos/user-create.dto';
+import { UserCreateDto } from 'src/shared/dtos/auth/user-create.dto';
 import { UserEntity } from 'src/core/domain/entities/user.entity';
 
 export class UserCreateMapper extends Mapper<UserCreateDto, UserEntity> {

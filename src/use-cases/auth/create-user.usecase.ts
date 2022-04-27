@@ -5,8 +5,8 @@ import { UseCase } from 'src/core/base/use-case';
 import { UserRepository } from 'src/core/repositories/user.repository';
 import { UserCreateMapper } from 'src/core/domain/mappers/users/user-create.mapper';
 import { UserCreatedMapper } from 'src/core/domain/mappers/users/user-created.mapper';
-import { UserCreateDto } from 'src/shared/dtos/user-create.dto';
-import { UserCreatedDto } from 'src/shared/dtos/user-created.dto';
+import { UserCreateDto } from 'src/shared/dtos/auth/user-create.dto';
+import { UserCreatedDto } from 'src/shared/dtos/auth/user-created.dto';
 
 @Injectable()
 export class CreateUserUseCase implements UseCase<UserCreatedDto> {

@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { UseCase } from 'src/core/base/use-case';
 import { UserCreatedMapper } from 'src/core/domain/mappers/users/user-created.mapper';
 import { UserRepository } from 'src/core/repositories/user.repository';
-import { UserCreatedDto } from 'src/shared/dtos/user-created.dto';
+import { UserCreatedDto } from 'src/shared/dtos/auth/user-created.dto';
 
 @Injectable()
 export class GetAllUsersUseCase implements UseCase<UserCreatedDto[]> {
