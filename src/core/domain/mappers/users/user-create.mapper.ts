@@ -5,19 +5,19 @@ import { UserEntity } from 'src/core/domain/entities/user.entity';
 export class UserCreateMapper extends Mapper<UserCreateDto, UserEntity> {
   public mapFrom(data: UserCreateDto): UserEntity {
     const user = new UserEntity();
-
-    user.name = data.name;
-    user.email = data.email;
-    user.password = data.password;
-    return user;
+    return Object.assign(user, {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    });
   }
 
   public mapTo(data: UserEntity): UserCreateDto {
     const user = new UserCreateDto();
-
-    user.id = data.id;
-    user.name = data.name;
-    user.email = data.email;
-    return user;
+    return Object.assign(user, {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+    });
   }
 }
