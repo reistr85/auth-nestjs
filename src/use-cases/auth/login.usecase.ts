@@ -20,7 +20,7 @@ export class LoginUseCase {
       throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
 
     const session = new SessionCreatedDto();
-    session.user = user;
+    session.user = { ...user, password: undefined };
     session.token = 'asd65as4d.ASDas1d351a3s51das.ass654';
 
     return session;

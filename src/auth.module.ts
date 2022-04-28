@@ -1,6 +1,7 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AuthMiddleware } from 'src/infra/middleware/auth.middleware';
 import { AuthController } from 'src/presentation/auth.controller';
+import { UserCreateMapper } from './core/domain/mappers/auth/user-create.mapper';
 import { UserRepository } from './core/repositories/user.repository';
 import { UsersCacheMemoryRepository } from './data/cache-memory/users-cache-memory.repository';
 import { UsersController } from './presentation/users.controller';
@@ -19,6 +20,7 @@ import { LoginUseCase } from './use-cases/auth/login.usecase';
     CreateUserUseCase,
     GetAllUsersUseCase,
     LoginUseCase,
+    UserCreateMapper,
   ],
 })
 export class AuthModule {
