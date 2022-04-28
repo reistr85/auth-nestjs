@@ -1,13 +1,19 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { Logger } from '@nestjs/common';
+
+const PREFIX = 'api/v1';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.setGlobalPrefix('api/v1/ampar');
+  app.setGlobalPrefix(PREFIX);
   setDocumentation(app);
   app.enableCors();
   await app.listen(Number(process.env.PORT));
+  Logger.log(
+    `🚀  Server ready at ${process.env.HOST}:${process.env.PORT}/${PREFIX}`,
+  );
 }
 
 const setDocumentation = (app) => {
@@ -26,4 +32,7 @@ const setDocumentation = (app) => {
   });
 };
 
-bootstrap();
+bootstrap().catch((e) => {
+  Logger.error(`❌  Error starting server. ${e}`, 'Bootstrap');
+  throw e;
+});
