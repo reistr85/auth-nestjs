@@ -1,10 +1,10 @@
 import { Mapper } from 'src/core/base/mapper';
-import { UserEntity } from 'src/core/domain/entities/user.entity';
+import { User } from 'src/core/domain/entities/user.entity';
 import { UserCreatedDto } from 'src/shared/dtos/auth/user-created.dto';
 
-export class UserCreatedMapper extends Mapper<UserCreatedDto, UserEntity> {
-  public mapFrom(data: UserCreatedDto): UserEntity {
-    const user = new UserEntity();
+export class UserCreatedMapper extends Mapper<UserCreatedDto, User> {
+  public mapFrom(data: UserCreatedDto): User {
+    const user = new User();
 
     user.id = data.id;
     user.name = data.name;
@@ -16,7 +16,7 @@ export class UserCreatedMapper extends Mapper<UserCreatedDto, UserEntity> {
     return user;
   }
 
-  public mapTo(data: UserEntity): UserCreatedDto {
+  public mapTo(data: User): UserCreatedDto {
     const user = new UserCreatedDto();
 
     user.id = data.id;

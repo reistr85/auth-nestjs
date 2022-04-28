@@ -1,12 +1,12 @@
 import { Mapper } from 'src/core/base/mapper';
 import { UserCreateDto } from 'src/shared/dtos/auth/user-create.dto';
-import { UserEntity } from 'src/core/domain/entities/user.entity';
+import { User } from 'src/core/domain/entities/user.entity';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class UserCreateMapper extends Mapper<UserCreateDto, UserEntity> {
-  public mapFrom(data: UserCreateDto): UserEntity {
-    const user = new UserEntity();
+export class UserCreateMapper extends Mapper<UserCreateDto, User> {
+  public mapFrom(data: UserCreateDto): User {
+    const user = new User();
 
     user.name = data.name;
     user.email = data.email;
@@ -17,7 +17,7 @@ export class UserCreateMapper extends Mapper<UserCreateDto, UserEntity> {
     return user;
   }
 
-  public mapTo(data: UserEntity): UserCreateDto {
+  public mapTo(data: User): UserCreateDto {
     const user = new UserCreateDto();
 
     user.id = data.id;

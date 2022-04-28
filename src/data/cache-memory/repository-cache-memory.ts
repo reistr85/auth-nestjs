@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { v4 as uuidV4 } from 'uuid';
 
-import { Entity } from 'src/core/base/entity';
+import { EntityBase } from 'src/core/base/entity.base';
 import { Repository } from 'src/core/base/repository';
 
 @Injectable()
 export class RepositoryCacheMemory<
-  TEntity extends Entity,
+  TEntity extends EntityBase,
 > extends Repository<TEntity> {
   protected readonly items: TEntity[];
 

@@ -1,6 +1,6 @@
-import { UserEntity } from 'src/core/domain/entities/user.entity';
+import { User } from 'src/core/domain/entities/user.entity';
 
 export class SessionCreatedDto {
-  user: UserEntity;
+  user: User;
   token: string;
 }
