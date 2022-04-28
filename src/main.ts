@@ -1,9 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import {
-  DocumentBuilder,
-  SwaggerModule,
-} from '@nestjs/swagger';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,7 +12,7 @@ async function bootstrap() {
 
 const setDocumentation = (app) => {
   const config = new DocumentBuilder()
-    .setTitle('API')
+    .setTitle('Project name')
     .setDescription('Documentation app')
     .setVersion('1.0')
     .addBearerAuth()
@@ -25,8 +22,8 @@ const setDocumentation = (app) => {
     swaggerOptions: {
       persistAuthorization: true,
     },
-    customSiteTitle: 'Docs',
+    customSiteTitle: 'Project name',
   });
-}
+};
 
 bootstrap();
