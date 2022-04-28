@@ -36,9 +36,7 @@ export class RepositoryCacheMemory<
   }
 
   public getById(id: string): TEntity {
-    const items = this.items.find((item) => item.id === id);
-
-    return items;
+    return this.items.find((item) => item.id === id);
   }
 
   public getAll(): TEntity[] {
