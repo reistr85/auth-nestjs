@@ -1,13 +1,9 @@
+const ENVIRONMENTS = Object.freeze({
+  test: ['.env.test'],
+  stage: ['.env.stage', '.env'],
+  development: ['.env.development', '.env'],
+  production: ['.env'],
+});
 export const setEnvironment = () => {
-  switch (process.env.NODE_ENV) {
-    case 'test':
-      return ['.env.test'];
-    case 'stage':
-      return ['.env.stage', '.env'];
-    case 'development':
-      return ['.env.development', '.env'];
-    case 'production':
-    default:
-      return '.env';
-  }
+  return ENVIRONMENTS[process.env.NODE_ENV]
 };
