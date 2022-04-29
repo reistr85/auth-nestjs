@@ -8,7 +8,7 @@ const dbConfig = {
   entities:
     environment === 'test'
       ? [`src/domain/models/**/*.entity.ts`]
-      : [`dist/domain/models/**/*.js`],
+      : [`dist/core/domain/**/*.js`],
   database:
     environment === 'test' ? process.env.DB_NAME_TEST : process.env.DB_NAME,
   migrationsRun: environment === 'test',
@@ -22,18 +22,18 @@ module.exports = [
     logger: 'file',
 
     migrationsTableName: 'migrations',
-    migrations: ['dist/base/type-orm/migrations/*.js'],
+    migrations: ['dist/data/type-orm/migrations/*.js'],
     cli: {
-      migrationsDir: 'src/base/type-orm/migrations',
+      migrationsDir: 'src/data/type-orm/migrations',
     },
   },
   {
     name: 'seed',
     ...dbConfig,
     migrationsTableName: 'seeds',
-    migrations: ['dist/base/type-orm/seeds/*.js'],
+    migrations: ['dist/data/type-orm/seeds/*.js'],
     cli: {
-      migrationsDir: 'src/base/type-orm/seeds',
+      migrationsDir: 'src/data/type-orm/seeds',
     },
   },
 ];

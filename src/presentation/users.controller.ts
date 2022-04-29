@@ -12,7 +12,7 @@ export class UsersController {
   ) {}
 
   @Post()
-  public create(@Body() user: UserCreateDto) {
+  public create(@Body() user: UserCreateDto): Promise<UserCreateDto> {
     return this.createUserUserCase.execute(user);
   }
 
