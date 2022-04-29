@@ -1,13 +1,13 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AuthMiddleware } from 'src/infra/middleware/auth.middleware';
 import { AuthController } from 'src/presentation/auth.controller';
-import { UserCreateMapper } from './core/domain/mappers/auth/user-create.mapper';
 import { UsersController } from '../presentation/users.controller';
 import { UserRepository } from '../core/repositories/user.repository';
 import { UsersCacheMemoryRepository } from '../data/cache-memory/users-cache-memory.repository';
 import { CreateUserUseCase } from '../use-cases/auth/create-user.usecase';
 import { LoginUseCase } from '../use-cases/auth/login.usecase';
 import { GetAllUsersUseCase } from '../use-cases/auth/get-all-users.usecase';
+import { UserCreateMapper } from '../core/domain/mappers/auth/user-create.mapper';
 
 @Module({
   imports: [],
