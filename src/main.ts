@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -10,6 +11,13 @@ async function bootstrap() {
   app.setGlobalPrefix(PREFIX);
   setDocumentation(app);
   app.enableCors();
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: true,
+    }),
+  );
   await app.listen(Number(process.env.PORT));
   Logger.log(
     `🚀  Server ready at ${process.env.HOST}:${process.env.PORT}/${PREFIX}`,

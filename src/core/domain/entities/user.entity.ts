@@ -1,7 +1,14 @@
-import { Entity } from 'src/core/base/entity';
+import { Entity, Column } from 'typeorm';
+import { EntityBase } from 'src/core/base/entity.base';
 
-export class UserEntity extends Entity {
+@Entity('users')
+export class User extends EntityBase {
+  @Column()
   public name: string;
+
+  @Column()
   public password: string;
+
+  @Column()
   public email: string;
 }

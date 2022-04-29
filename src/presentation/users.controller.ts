@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { UserEntity } from 'src/core/domain/entities/user.entity';
 import { UserCreateDto } from 'src/shared/dtos/auth/user-create.dto';
+import { UserCreatedDto } from 'src/shared/dtos/auth/user-created.dto';
 import { CreateUserUseCase } from 'src/use-cases/auth/create-user.usecase';
 import { GetAllUsersUseCase } from 'src/use-cases/auth/get-all-users.usecase';
 import {
@@ -21,13 +21,13 @@ export class UsersController {
 
   @Post()
   @ApiBody({ type: UserCreateDto })
-  public create(@Body() user: UserCreateDto) {
+  public create(@Body() user: UserCreateDto): Promise<UserCreateDto> {
     return this.createUserUserCase.execute(user);
   }
 
   @Get()
-  @ApiOkResponse({ type: [UserEntity] })
-  public findAll(): UserEntity[] {
+  @ApiOkResponse({ type: [UserCreatedDto] })
+  public findAll(): UserCreatedDto[] {
     return this.getAllUsersUserCase.execute();
   }
 }
