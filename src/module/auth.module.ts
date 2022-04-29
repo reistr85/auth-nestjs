@@ -7,7 +7,8 @@ import { UsersCacheMemoryRepository } from '../data/cache-memory/users-cache-mem
 import { CreateUserUseCase } from '../use-cases/auth/create-user.usecase';
 import { LoginUseCase } from '../use-cases/auth/login.usecase';
 import { GetAllUsersUseCase } from '../use-cases/auth/get-all-users.usecase';
-import { UserCreateMapper } from '../core/domain/mappers/auth/user-create.mapper';
+import { UserCreateMapper } from '../core/domain/mappers/users/user-create.mapper';
+import { UserCreatedMapper } from '../core/domain/mappers/users/user-created.mapper';
 
 @Module({
   imports: [],
@@ -21,6 +22,7 @@ import { UserCreateMapper } from '../core/domain/mappers/auth/user-create.mapper
     GetAllUsersUseCase,
     LoginUseCase,
     UserCreateMapper,
+    UserCreatedMapper,
   ],
 })
 export class AuthModule {

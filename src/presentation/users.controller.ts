@@ -6,6 +6,7 @@ import { GetAllUsersUseCase } from 'src/use-cases/auth/get-all-users.usecase';
 import {
   ApiBearerAuth,
   ApiBody,
+  ApiCreatedResponse,
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
@@ -21,7 +22,8 @@ export class UsersController {
 
   @Post()
   @ApiBody({ type: UserCreateDto })
-  public create(@Body() user: UserCreateDto): Promise<UserCreateDto> {
+  @ApiCreatedResponse({ type: UserCreatedDto })
+  public create(@Body() user: UserCreateDto): Promise<UserCreatedDto> {
     return this.createUserUserCase.execute(user);
   }
 
