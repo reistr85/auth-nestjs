@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { UserRepository } from 'src/core/repositories/user.repository';
-import { UserCreateDto } from 'src/shared/dtos/auth/user-create.dto';
-import { UserCreatedDto } from 'src/shared/dtos/auth/user-created.dto';
+import { UserCreateDto } from 'src/shared/dtos/user/user-create.dto';
+import { UserCreatedDto } from 'src/shared/dtos/user/user-created.dto';
 import { UserCreateMapper } from '../../core/domain/mappers/users/user-create.mapper';
 import { UserCreatedMapper } from '../../core/domain/mappers/users/user-created.mapper';
 
