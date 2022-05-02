@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* **app):** implementing typeorm ([6471b9d](https://gitlab.usemobile.com.br/ana.moraes/backend-get-started/commits6471b9d96269cf4e2a063c3075126773be41f996))
+* **app:** implementing typeorm ([6471b9d](https://gitlab.usemobile.com.br/ana.moraes/backend-get-started/commits6471b9d96269cf4e2a063c3075126773be41f996))
 * **app:** add .env gitignore ([603d2f1](https://gitlab.usemobile.com.br/ana.moraes/backend-get-started/commits603d2f1ce5e7eb6b7eb4e08970a3e8d033b89414))
 * **app:** add class-validator ([62c61f3](https://gitlab.usemobile.com.br/ana.moraes/backend-get-started/commits62c61f3fe3c4341e2227432d66a1f7ba2abc1833))
 * **app:** config typeorm ([1131440](https://gitlab.usemobile.com.br/ana.moraes/backend-get-started/commits11314404c667bd369f8768d8ca14f0c61f44cc63))
