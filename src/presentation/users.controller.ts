@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { UserCreateDto } from 'src/shared/dtos/auth/user-create.dto';
-import { UserCreatedDto } from 'src/shared/dtos/auth/user-created.dto';
+import { UserCreateDto } from 'src/shared/dtos/user/user-create.dto';
+import { UserCreatedDto } from 'src/shared/dtos/user/user-created.dto';
 import { CreateUserUseCase } from 'src/use-cases/auth/create-user.usecase';
 import { GetAllUsersUseCase } from 'src/use-cases/auth/get-all-users.usecase';
 import {

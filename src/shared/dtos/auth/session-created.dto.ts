@@ -1,11 +1,11 @@
 import { Expose } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
-import { User } from 'src/core/domain/entities/user.entity';
+import { UserCreatedDto } from '../user/user-created.dto';
 
 export class SessionCreatedDto {
   @Expose()
-  @ApiProperty({ type: User })
-  user: User;
+  @ApiProperty({ type: UserCreatedDto })
+  user: UserCreatedDto;
 
   @Expose()
   @ApiProperty({
