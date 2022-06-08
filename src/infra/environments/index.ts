@@ -5,5 +5,5 @@ const ENVIRONMENTS = Object.freeze({
   production: ['.env'],
 });
 export const setEnvironment = () => {
-  return ENVIRONMENTS[process.env.NODE_ENV]
+  return ENVIRONMENTS[process.env.NODE_ENV];
 };
