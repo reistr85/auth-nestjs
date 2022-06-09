@@ -7,7 +7,7 @@ export class UserCreatedMapper extends Mapper<UserCreatedDto, User> {
   public mapFrom(data: UserCreatedDto): User {
     const user = new User();
     return Object.assign(user, {
-      id: data.id,
+      id: 'data.id',
       name: data.name,
       email: data.email,
     });

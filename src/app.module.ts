@@ -4,18 +4,18 @@ import { AppController } from './app.controller';
 import { AuthModule } from './module/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { setEnvironment } from './infra/environments';
-import { UsersModule } from './module/users.module';
+import { CustomersModule } from './module/customers/customers.modules';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
-    AuthModule,
-    // UsersModule,
     ConfigModule.forRoot({
       isGlobal: true,
       expandVariables: true,
       envFilePath: setEnvironment(),
     }),
+    AuthModule,
+    CustomersModule,
   ],
   controllers: [AppController],
   providers: [],
