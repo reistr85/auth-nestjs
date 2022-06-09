@@ -12,7 +12,7 @@ export const databaseProviders = [
         password: 'Reistr851120@',
         database: 'ampar',
         entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
-        synchronize: true,
+        synchronize: false,
       });
 
       return dataSource.initialize();
