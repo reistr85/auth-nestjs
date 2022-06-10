@@ -1,35 +1,24 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { UserCreateDto } from 'src/shared/dtos/user/user-create.dto';
-import { UserCreatedDto } from 'src/shared/dtos/user/user-created.dto';
-import { CreateUserUseCase } from 'src/use-cases/auth/create-user.usecase';
-import { GetAllUsersUseCase } from 'src/use-cases/auth/get-all-users.usecase';
-import {
-  ApiBearerAuth,
-  ApiBody,
-  ApiCreatedResponse,
-  ApiOkResponse,
-  ApiTags,
-} from '@nestjs/swagger';
+import { UserCreatedDto, UserCreateDto } from 'src/shared/dtos/user';
+import { CreateUserUseCase } from 'src/use-cases/users/create-user.usecase';
+import { GetAllUsersUseCase } from 'src/use-cases/users/get-all-users.usecase';
 
-@ApiTags('Users')
 @Controller('/users')
-@ApiBearerAuth()
 export class UsersController {
   constructor(
-    private createUserUserCase: CreateUserUseCase,
-    private getAllUsersUserCase: GetAllUsersUseCase,
+    private getAllUsers: GetAllUsersUseCase,
+    private createUser: CreateUserUseCase,
   ) {}
 
-  @Post()
-  @ApiBody({ type: UserCreateDto })
-  @ApiCreatedResponse({ type: UserCreatedDto })
-  public create(@Body() user: UserCreateDto): Promise<UserCreatedDto> {
-    return this.createUserUserCase.execute(user);
+  @Get()
+  public async getAll(): Promise<{ users: UserCreatedDto[] }> {
+    return await this.getAllUsers.execute();
   }
 
-  @Get()
-  @ApiOkResponse({ type: [UserCreatedDto] })
-  public findAll(): UserCreatedDto[] {
-    return this.getAllUsersUserCase.execute();
+  @Post()
+  public async create(
+    @Body() userCreateDto: UserCreateDto,
+  ): Promise<{ user: UserCreateDto }> {
+    return await this.createUser.execute(userCreateDto);
   }
 }

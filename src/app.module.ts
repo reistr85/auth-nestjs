@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
-import { AuthModule } from './module/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { setEnvironment } from './infra/environments';
-import { CustomersModule } from './module/customers/customers.modules';
+import { UsersModule } from './module/users/users.modules';
 
 @Module({
   imports: [
@@ -14,8 +13,7 @@ import { CustomersModule } from './module/customers/customers.modules';
       expandVariables: true,
       envFilePath: setEnvironment(),
     }),
-    AuthModule,
-    CustomersModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [],

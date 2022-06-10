@@ -14,8 +14,6 @@ export class UserCreateMapper extends Mapper<UserCreateDto, User> {
   }
 
   public mapTo(data: User): UserCreateDto {
-    return plainToClass(UserCreateDto, data, {
-      excludeExtraneousValues: true,
-    });
+    return plainToClass(UserCreateDto, data);
   }
 }
