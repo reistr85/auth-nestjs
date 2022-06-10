@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { ConfigModule } from '@nestjs/config';
 import { setEnvironment } from './infra/environments';
@@ -6,6 +7,19 @@ import { UsersModule } from './module/users/users.modules';
 
 @Module({
   imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'Reistr851120@',
+      database: 'ampar',
+      synchronize: true,
+      entities: [`${__dirname}/**/*.entity{.js,.ts}`],
+      migrationsTableName: 'migrations',
+      migrations: ['dist/data/type-orm/migrations/*.js'],
+      cli: { migrationsDir: 'src/data/type-orm/migrations' },
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
       expandVariables: true,
