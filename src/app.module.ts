@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { ConfigModule } from '@nestjs/config';
 import { setEnvironment } from './infra/environments';
 import { UsersModule } from './module/users/users.modules';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 console.log(__dirname);
 @Module({
   imports: [
@@ -19,6 +20,7 @@ console.log(__dirname);
       migrationsTableName: 'migrations',
       migrations: ['dist/data/type-orm/migrations/*.js'],
       cli: { migrationsDir: `${__dirname}/../data/type-orm/migrations` },
+      namingStrategy: new SnakeNamingStrategy(),
     }),
     ConfigModule.forRoot({
       isGlobal: true,
