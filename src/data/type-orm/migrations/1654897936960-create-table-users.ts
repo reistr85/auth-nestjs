@@ -1,4 +1,9 @@
-import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
 export class createTableUsers1654897936960 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -10,6 +15,8 @@ export class createTableUsers1654897936960 implements MigrationInterface {
             name: 'id',
             type: 'varchar',
             isPrimary: true,
+            generationStrategy: 'uuid',
+            default: '(uuid())',
           },
           {
             name: 'type_user_id',
@@ -31,6 +38,16 @@ export class createTableUsers1654897936960 implements MigrationInterface {
             name: 'situation',
             type: 'varchar',
             default: '"active"',
+          },
+          {
+            name: 'created_by',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'updated_by',
+            type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'created_at',
@@ -58,6 +75,28 @@ export class createTableUsers1654897936960 implements MigrationInterface {
         columnNames: ['type_user_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'type_users',
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      }),
+    );
+
+    await queryRunner.createForeignKey(
+      'users',
+      new TableForeignKey({
+        columnNames: ['created_by'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'users',
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      }),
+    );
+
+    await queryRunner.createForeignKey(
+      'users',
+      new TableForeignKey({
+        columnNames: ['updated_by'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'users',
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       }),

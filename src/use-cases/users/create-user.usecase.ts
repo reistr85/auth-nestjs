@@ -18,6 +18,7 @@ export class CreateUserUseCase {
     const user = await this.userRepository.create(
       new UserCreateMapper().mapFrom(createUserDto),
     );
+    console.log(user);
     await this.userRepository.save(user);
     return { user: new UserCreateMapper().mapTo(user) };
   }

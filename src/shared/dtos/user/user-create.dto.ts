@@ -9,6 +9,10 @@ export class UserCreateDto {
 
   @ApiProperty()
   @IsString()
+  type_user_id: string;
+
+  @ApiProperty()
+  @IsString()
   name: string;
 
   @ApiProperty()

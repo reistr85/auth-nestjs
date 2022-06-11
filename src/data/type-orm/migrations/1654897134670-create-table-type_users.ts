@@ -10,6 +10,8 @@ export class createTableTypeUsers1654897134670 implements MigrationInterface {
             name: 'id',
             type: 'varchar',
             isPrimary: true,
+            generationStrategy: 'uuid',
+            default: '(uuid())',
           },
           {
             name: 'description',

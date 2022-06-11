@@ -1,11 +1,6 @@
-import {
-  Entity,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn,
-} from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { EntityBase } from 'src/core/base/entity.base';
+import { TypeUser } from './type-user.entity';
 
 @Entity('users')
 export class User extends EntityBase {
@@ -19,20 +14,9 @@ export class User extends EntityBase {
   public email: string;
 
   @Column()
-  public situation: string;
+  public type_user_id: string;
 
-  @Column()
-  public created_by: string;
-
-  @Column()
-  public updated_by: string;
-
-  @CreateDateColumn()
-  public created_at: Date;
-
-  @UpdateDateColumn()
-  public updated_at: Date;
-
-  @DeleteDateColumn()
-  public deleted_at: Date;
+  @ManyToOne(() => TypeUser, { eager: true })
+  @JoinColumn({ name: 'type_user_id' })
+  type_user: TypeUser;
 }

@@ -1,15 +1,29 @@
-import { Entity, Column, OneToMany } from 'typeorm';
-import { EntityBase } from 'src/core/base/entity.base';
-import { User } from 'src/shared/decorator';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  DeleteDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('type_users')
-export class TypeUser extends EntityBase {
-  // @OneToMany(type => User, (photo) => photo.user)
-  // users: User[];
+export class TypeUser {
+  @PrimaryGeneratedColumn('uuid')
+  id?: string;
 
   @Column()
-  public name: string;
+  public description: string;
 
   @Column()
   public situation: string;
+
+  @CreateDateColumn()
+  public created_at: Date;
+
+  @UpdateDateColumn()
+  public updated_at: Date;
+
+  @DeleteDateColumn()
+  public deleted_at: Date;
 }

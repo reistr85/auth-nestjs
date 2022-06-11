@@ -1,4 +1,5 @@
 import {
+  Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
@@ -10,6 +11,15 @@ import {
 export class EntityBase {
   @PrimaryGeneratedColumn('uuid')
   id?: string;
+
+  @Column()
+  public situation: string;
+
+  @Column()
+  public created_by?: string;
+
+  @Column()
+  public updated_by?: string;
 
   @CreateDateColumn()
   public created_at: Date;

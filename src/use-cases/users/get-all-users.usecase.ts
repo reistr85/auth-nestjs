@@ -1,19 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { User } from 'src/core/domain/entities/user.entity';
 import { UserCreatedMapper } from 'src/core/domain/mappers/users/user-created.mapper';
 import { UserCreatedDto } from 'src/shared/dtos/user';
+import { UserRepository } from 'src/data/type-orm/user.repository';
 
 @Injectable()
 export class GetAllUsersUseCase {
-  constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
-  ) {}
+  constructor(private readonly userRepository: UserRepository) {}
 
   public async execute(): Promise<{ users: UserCreatedDto[] }> {
-    const users = await this.userRepository.find();
+    const users = await this.userRepository.getAll();
     return { users: users.map((user) => new UserCreatedMapper().mapTo(user)) };
   }
 }
