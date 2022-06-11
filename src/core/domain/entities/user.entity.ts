@@ -18,6 +18,15 @@ export class User extends EntityBase {
   @Column()
   public email: string;
 
+  @Column()
+  public situation: string;
+
+  @Column()
+  public created_by: string;
+
+  @Column()
+  public updated_by: string;
+
   @CreateDateColumn()
   public created_at: Date;
 

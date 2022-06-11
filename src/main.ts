@@ -1,5 +1,6 @@
 import { ValidationPipe, Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import rateLimit from 'express-rate-limit';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
@@ -10,6 +11,14 @@ async function bootstrap() {
   app.setGlobalPrefix(PREFIX);
   setDocumentation(app);
   app.enableCors();
+  app.use(
+    rateLimit({
+      windowMs: 10 * 1000 * 60,
+      max: 1000,
+      message:
+        'Too many requests from this IP, please try again in 10 minutes 🔒',
+    }),
+  );
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,

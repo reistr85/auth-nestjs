@@ -4,7 +4,7 @@ import { AppController } from './app.controller';
 import { ConfigModule } from '@nestjs/config';
 import { setEnvironment } from './infra/environments';
 import { UsersModule } from './module/users/users.modules';
-
+console.log(__dirname);
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -14,11 +14,11 @@ import { UsersModule } from './module/users/users.modules';
       username: 'root',
       password: 'Reistr851120@',
       database: 'ampar',
-      synchronize: true,
+      synchronize: false,
       entities: [`${__dirname}/**/*.entity{.js,.ts}`],
       migrationsTableName: 'migrations',
       migrations: ['dist/data/type-orm/migrations/*.js'],
-      cli: { migrationsDir: 'src/data/type-orm/migrations' },
+      cli: { migrationsDir: `${__dirname}/../data/type-orm/migrations` },
     }),
     ConfigModule.forRoot({
       isGlobal: true,
