@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UserCreatedMapper } from 'src/core/domain/mappers/users/user-created.mapper';
-import { UserCreatedDto } from 'src/shared/dtos/user';
+import { UserCreatedDto } from 'src/shared/dtos/users';
 import { UserRepository } from 'src/data/type-orm/user.repository';
 
 @Injectable()

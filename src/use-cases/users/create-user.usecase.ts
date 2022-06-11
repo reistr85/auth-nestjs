@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/core/domain/entities/user.entity';
 import { UserCreateMapper } from 'src/core/domain/mappers/users/user-create.mapper';
-import { UserCreateDto } from 'src/shared/dtos/user';
+import { UserCreateDto } from 'src/shared/dtos/users';
 import { UserRepository } from 'src/data/type-orm/user.repository';
 
 @Injectable()

@@ -1,5 +1,5 @@
 import { Mapper } from 'src/core/base/mapper';
-import { UserCreateDto } from 'src/shared/dtos/user/user-create.dto';
+import { UserCreateDto } from 'src/shared/dtos/users/user-create.dto';
 import { User } from 'src/core/domain/entities/user.entity';
 import { plainToClass } from 'class-transformer';
 
