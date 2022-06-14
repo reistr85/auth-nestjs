@@ -1,6 +1,7 @@
-import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, BeforeInsert } from 'typeorm';
 import { EntityBase } from 'src/core/base/entity.base';
 import { TypeUser } from './type-user.entity';
+import { hashSync } from 'bcrypt';
 
 @Entity('users')
 export class User extends EntityBase {
@@ -19,4 +20,9 @@ export class User extends EntityBase {
   @ManyToOne(() => TypeUser, { eager: true })
   @JoinColumn({ name: 'type_user_id' })
   type_user: TypeUser;
+
+  @BeforeInsert()
+  hashPassword() {
+    this.password = hashSync(this.password, 10);
+  }
 }

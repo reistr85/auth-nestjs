@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { IsEmail, IsString, MinLength } from 'class-validator';
+import { IsEmail, IsString, Matches, MinLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { RegexHelper } from 'src/shared/helpers/regex.helper';
+import { MessagesHelper } from 'src/shared/helpers/messages.helper';
 
 @Injectable()
 export class UserCreateDto {
@@ -21,6 +23,6 @@ export class UserCreateDto {
 
   @ApiProperty()
   @IsString()
-  @MinLength(8)
+  @Matches(RegexHelper.password, { message: MessagesHelper.INVALID_PASSWORD })
   password: string;
 }

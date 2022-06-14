@@ -5,16 +5,21 @@ import { ConfigModule } from '@nestjs/config';
 import { setEnvironment } from './infra/environments';
 import { UsersModule } from './module/users/users.modules';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-console.log(__dirname);
+import { AuthModule } from './module/auth/auth.module';
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      expandVariables: true,
+      envFilePath: setEnvironment(),
+    }),
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'Reistr851120@',
-      database: 'ampar',
+      type: process.env.DB_TYPE,
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       synchronize: false,
       entities: [`${__dirname}/**/*.entity{.js,.ts}`],
       migrationsTableName: 'migrations',
@@ -22,12 +27,8 @@ console.log(__dirname);
       cli: { migrationsDir: `${__dirname}/../data/type-orm/migrations` },
       namingStrategy: new SnakeNamingStrategy(),
     }),
-    ConfigModule.forRoot({
-      isGlobal: true,
-      expandVariables: true,
-      envFilePath: setEnvironment(),
-    }),
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [],

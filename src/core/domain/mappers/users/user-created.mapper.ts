@@ -10,6 +10,7 @@ export class UserCreatedMapper extends Mapper<UserCreatedDto, User> {
   }
 
   public mapTo(data: User): UserCreatedDto {
+    delete data.password;
     return plainToClass(UserCreatedDto, data);
   }
 }

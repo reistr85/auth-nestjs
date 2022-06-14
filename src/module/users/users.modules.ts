@@ -13,6 +13,7 @@ import {
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
+  exports: [UserRepository],
   controllers: [UsersController],
   providers: [
     UserRepository,

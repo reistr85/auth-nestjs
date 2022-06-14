@@ -7,7 +7,7 @@ import { UserCreatedDto } from 'src/shared/dtos/users';
 export class GetUserUsecase {
   constructor(private readonly userRepository: UserRepository) {}
   public async execute(id: string): Promise<{ user: UserCreatedDto }> {
-    const user = await this.userRepository.findOne(id);
+    const user = await this.userRepository.findOne({ id });
     return { user: new UserCreatedMapper().mapTo(user) };
   }
 }

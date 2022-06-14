@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/core/domain/entities/user.entity';
 import { UserCreateMapper } from 'src/core/domain/mappers/users/user-create.mapper';
 import { UserCreateDto, UserUpdateDto } from 'src/shared/dtos/users';
-import { Repository } from 'typeorm';
+import { FindConditions, FindOneOptions, Repository } from 'typeorm';
 
 @Injectable()
 export class UserRepository {
@@ -23,16 +23,19 @@ export class UserRepository {
     return await this.userRepository.save(user);
   }
 
-  public async findOne(id: string): Promise<User> {
+  public async findOne(
+    conditions: FindConditions<User>,
+    options?: FindOneOptions<User>,
+  ): Promise<User> {
     try {
-      return await this.userRepository.findOneOrFail({ id });
+      return await this.userRepository.findOneOrFail(conditions, options);
     } catch (error) {
       throw new NotFoundException('Register not found');
     }
   }
 
   public async update(id: string, userUpdateDto: UserUpdateDto): Promise<User> {
-    let user = await this.findOne(id);
+    let user = await this.findOne({ id });
     delete user.type_user;
 
     user = await this.userRepository.merge(user, userUpdateDto);
@@ -40,7 +43,7 @@ export class UserRepository {
   }
 
   public async remove(id: string): Promise<void> {
-    const user = await this.findOne(id);
+    const user = await this.findOne({ id });
     await this.userRepository.softDelete(user);
   }
 }

@@ -8,7 +8,9 @@ import {
   ParseUUIDPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import {
   UserCreatedDto,
   UserCreateDto,
@@ -24,6 +26,7 @@ import {
 import { RemoveUserUseCase } from 'src/use-cases/users/remove-user.usecase';
 
 @Controller('/users')
+@UseGuards(AuthGuard('jwt'))
 export class UsersController {
   constructor(
     private readonly getAllUsers: GetAllUsersUseCase,
@@ -43,7 +46,7 @@ export class UsersController {
   @HttpCode(HttpCodeEnum.CREATED)
   public async create(
     @Body() body: UserCreateDto,
-  ): Promise<{ user: UserCreateDto }> {
+  ): Promise<{ user: UserCreatedDto }> {
     return await this.createUser.execute(body);
   }
 
