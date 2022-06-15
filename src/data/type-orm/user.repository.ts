@@ -35,11 +35,11 @@ export class UserRepository {
   }
 
   public async update(id: string, userUpdateDto: UserUpdateDto): Promise<User> {
-    let user = await this.findOne({ id });
-    delete user.type_user;
-
-    user = await this.userRepository.merge(user, userUpdateDto);
-    return await this.userRepository.save(user);
+    // let user = await this.findOne({ id });
+    // delete user.role;
+    // user = await this.userRepository.merge(user, userUpdateDto);
+    // return await this.userRepository.save(user);
+    return null;
   }
 
   public async remove(id: string): Promise<void> {

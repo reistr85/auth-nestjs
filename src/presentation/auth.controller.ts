@@ -1,8 +1,7 @@
 import { Controller, HttpCode, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { LoginUserDto } from 'src/shared/dtos/auth/login-user.dto';
 import { TokenDto } from 'src/shared/dtos/auth/token.dto';
-import { HttpCodeEnum } from 'src/shared/enums/http-coded.enumn';
+import { HttpCodeEnum } from 'src/shared/enums/http-coded.enum';
 import { LoginUseCase } from 'src/use-cases/auth/login.usecase';
 
 @Controller('auth')
@@ -12,7 +11,9 @@ export class AuthController {
   @UseGuards(AuthGuard('local'))
   @Post('login')
   @HttpCode(HttpCodeEnum.SUCCESS)
-  async login(@Req() req: LoginUserDto): Promise<TokenDto> {
-    return this.loginUseCase.execute(req);
+  async login(@Req() req): Promise<TokenDto> {
+    const { id, email } = req.user;
+    const role = req.user.role.label;
+    return this.loginUseCase.execute({ id, email, role });
   }
 }

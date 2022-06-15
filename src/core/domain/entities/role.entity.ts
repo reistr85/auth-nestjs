@@ -7,13 +7,13 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('type_users')
-export class TypeUser {
+@Entity('roles')
+export class Role {
   @PrimaryGeneratedColumn('uuid')
   id?: string;
 
   @Column()
-  public description: string;
+  public label: string;
 
   @Column()
   public situation: string;

@@ -1,8 +1,5 @@
 {
-  "cSpell.words": [
-    "ampar",
-    "dtos",
-    "nestjs",
-    "usecase"
-  ]
+  "cSpell.words": ["ampar", "dtos", "nestjs", "usecase"],
+  "prettier.printWidth": 80,
+  "editor.formatOnSave": true
 }

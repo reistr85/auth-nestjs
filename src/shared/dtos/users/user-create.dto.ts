@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { IsEmail, IsString, Matches, MinLength } from 'class-validator';
+import { IsEmail, IsEnum, IsString, Matches } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { RegexHelper } from 'src/shared/helpers/regex.helper';
 import { MessagesHelper } from 'src/shared/helpers/messages.helper';
+import { Roles } from 'src/shared/enums/roles.enum';
 
 @Injectable()
 export class UserCreateDto {
@@ -11,7 +12,7 @@ export class UserCreateDto {
 
   @ApiProperty()
   @IsString()
-  type_user_id: string;
+  role_id: string;
 
   @ApiProperty()
   @IsString()

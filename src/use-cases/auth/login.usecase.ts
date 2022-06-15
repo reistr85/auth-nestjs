@@ -7,7 +7,11 @@ export class LoginUseCase {
   constructor(private readonly jwtService: JwtService) {}
 
   public async execute(loginUserDto: LoginUserDto) {
-    const payload = { sub: loginUserDto.id, email: loginUserDto.email };
+    const payload = {
+      sub: loginUserDto.id,
+      email: loginUserDto.email,
+      role: loginUserDto.role,
+    };
 
     return {
       token: this.jwtService.sign(payload),

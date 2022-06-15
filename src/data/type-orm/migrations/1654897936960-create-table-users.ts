@@ -19,7 +19,7 @@ export class createTableUsers1654897936960 implements MigrationInterface {
             default: '(uuid())',
           },
           {
-            name: 'type_user_id',
+            name: 'role_id',
             type: 'varchar',
           },
           {
@@ -72,9 +72,10 @@ export class createTableUsers1654897936960 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'users',
       new TableForeignKey({
-        columnNames: ['type_user_id'],
+        name: 'user_roles_fk',
+        columnNames: ['role_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'type_users',
+        referencedTableName: 'roles',
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       }),
@@ -83,6 +84,7 @@ export class createTableUsers1654897936960 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'users',
       new TableForeignKey({
+        name: 'user_users_created_by_fk',
         columnNames: ['created_by'],
         referencedColumnNames: ['id'],
         referencedTableName: 'users',
@@ -94,6 +96,7 @@ export class createTableUsers1654897936960 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'users',
       new TableForeignKey({
+        name: 'user_users_updated_by_fk',
         columnNames: ['updated_by'],
         referencedColumnNames: ['id'],
         referencedTableName: 'users',
@@ -104,11 +107,9 @@ export class createTableUsers1654897936960 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    const table = await queryRunner.getTable('users');
-    const foreignKey = table.foreignKeys.find(
-      (fk) => fk.columnNames.indexOf('type_user_id') !== -1,
-    );
-    await queryRunner.dropForeignKey('users', foreignKey);
+    await queryRunner.dropForeignKey('users', 'user_roles_fk');
+    await queryRunner.dropForeignKey('users', 'user_users_created_by_fk');
+    await queryRunner.dropForeignKey('users', 'user_users_updated_by_fk');
     await queryRunner.dropTable('users');
   }
 }

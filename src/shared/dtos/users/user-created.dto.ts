@@ -1,6 +1,6 @@
 import { TimestampDto } from 'src/core/base/timestamp.dto';
 import { Expose } from 'class-transformer';
-import { TypeUser } from 'src/core/domain/entities/type-user.entity';
+import { Role } from 'src/core/domain/entities/role.entity';
 
 export class UserCreatedDto extends TimestampDto {
   @Expose()
@@ -16,5 +16,5 @@ export class UserCreatedDto extends TimestampDto {
   type_user_id: string;
 
   @Expose()
-  type_user: TypeUser[];
+  role: Role[];
 }
