@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UserRepository } from 'src/data/type-orm/user.repository';
+import { UserRepository } from 'src/core/domain/repositories/user.repository';
 
 @Injectable()
 export class RemoveUserUseCase {

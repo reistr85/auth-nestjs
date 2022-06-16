@@ -25,28 +25,25 @@ import {
   CreateUserUseCase,
   GetUserUsecase,
   UpdateUserUseCase,
-} from 'src/use-cases/users';
-import { RemoveUserUseCase } from 'src/use-cases/users/remove-user.usecase';
+} from 'src/core/application/users';
+import { RemoveUserUseCase } from 'src/core/application/users/remove-user.usecase';
 
 @Controller('/users')
-@UseGuards(AuthGuard('jwt'), RoleGuard)
+// @UseGuards(AuthGuard('jwt'), RoleGuard)
 export class UsersController {
   constructor(
     private readonly getAllUsers: GetAllUsersUseCase,
     private readonly createUser: CreateUserUseCase,
-    private readonly getUse: GetUserUsecase,
-    private readonly updateUser: UpdateUserUseCase,
-    private readonly removeUser: RemoveUserUseCase,
   ) {}
 
-  @Role(Roles.USER)
+  // @Role(Roles.USER)
   @Get()
   @HttpCode(HttpCodeEnum.SUCCESS)
   public async findAll(): Promise<{ users: UserCreatedDto[] }> {
     return await this.getAllUsers.execute();
   }
 
-  @Role(Roles.ADMIN)
+  // @Role(Roles.ADMIN)
   @Post()
   @HttpCode(HttpCodeEnum.CREATED)
   public async create(
@@ -55,31 +52,31 @@ export class UsersController {
     return await this.createUser.execute(body);
   }
 
-  @Role(Roles.USER)
-  @Get(':id')
-  @HttpCode(HttpCodeEnum.SUCCESS)
-  public async findOne(
-    @Param('id', new ParseUUIDPipe()) id: string,
-  ): Promise<{ user: UserCreatedDto }> {
-    return await this.getUse.execute(id);
-  }
+  // @Role(Roles.USER)
+  // @Get(':id')
+  // @HttpCode(HttpCodeEnum.SUCCESS)
+  // public async findOne(
+  //   @Param('id', new ParseUUIDPipe()) id: string,
+  // ): Promise<{ user: UserCreatedDto }> {
+  //   return await this.getUse.execute(id);
+  // }
 
-  @Role(Roles.ADMIN)
-  @Put(':id')
-  @HttpCode(HttpCodeEnum.SUCCESS)
-  public async update(
-    @Param('id', new ParseUUIDPipe()) id: string,
-    @Body() body: UserUpdateDto,
-  ): Promise<{ user: UserCreatedDto }> {
-    return await this.updateUser.execute(id, body);
-  }
+  // @Role(Roles.ADMIN)
+  // @Put(':id')
+  // @HttpCode(HttpCodeEnum.SUCCESS)
+  // public async update(
+  //   @Param('id', new ParseUUIDPipe()) id: string,
+  //   @Body() body: UserUpdateDto,
+  // ): Promise<{ user: UserCreatedDto }> {
+  //   return await this.updateUser.execute(id, body);
+  // }
 
-  @Role(Roles.ADMIN)
-  @Delete(':id')
-  @HttpCode(HttpCodeEnum.NO_CONTENT)
-  public async delete(
-    @Param('id', new ParseUUIDPipe()) id: string,
-  ): Promise<void> {
-    await this.removeUser.execute(id);
-  }
+  // @Role(Roles.ADMIN)
+  // @Delete(':id')
+  // @HttpCode(HttpCodeEnum.NO_CONTENT)
+  // public async delete(
+  //   @Param('id', new ParseUUIDPipe()) id: string,
+  // ): Promise<void> {
+  //   await this.removeUser.execute(id);
+  // }
 }

@@ -2,7 +2,7 @@ import { Controller, HttpCode, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { TokenDto } from 'src/shared/dtos/auth/token.dto';
 import { HttpCodeEnum } from 'src/shared/enums/http-coded.enum';
-import { LoginUseCase } from 'src/use-cases/auth/login.usecase';
+import { LoginUseCase } from 'src/core/application/auth/login.usecase';
 
 @Controller('auth')
 export class AuthController {

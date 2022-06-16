@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { compareSync } from 'bcrypt';
 import { User } from 'src/core/domain/entities/user.entity';
-import { UserRepository } from 'src/data/type-orm/user.repository';
+import { UserRepository } from 'src/core/domain/repositories/user.repository';
 
 @Injectable()
 export class ValidateUserUseCase {

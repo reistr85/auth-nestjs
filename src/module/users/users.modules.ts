@@ -2,26 +2,11 @@ import { Module } from '@nestjs/common';
 import { User } from 'src/core/domain/entities/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersController } from 'src/presentation/users.controller';
-import { UserRepository } from 'src/data/type-orm/user.repository';
-import {
-  GetAllUsersUseCase,
-  CreateUserUseCase,
-  GetUserUsecase,
-  UpdateUserUseCase,
-  RemoveUserUseCase,
-} from 'src/use-cases/users';
+import { userProvider } from './users.provider';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
-  exports: [UserRepository],
   controllers: [UsersController],
-  providers: [
-    UserRepository,
-    GetAllUsersUseCase,
-    CreateUserUseCase,
-    GetUserUsecase,
-    UpdateUserUseCase,
-    RemoveUserUseCase,
-  ],
+  providers: [...userProvider],
 })
 export class UsersModule {}

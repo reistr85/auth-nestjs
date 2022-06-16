@@ -1,18 +1,14 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { NotFoundException } from '@nestjs/common';
 import { User } from 'src/core/domain/entities/user.entity';
 import { UserCreateMapper } from 'src/core/domain/mappers/users/user-create.mapper';
+import { UserRepository } from 'src/core/domain/repositories/user.repository';
 import { UserCreateDto, UserUpdateDto } from 'src/shared/dtos/users';
 import { FindConditions, FindOneOptions, Repository } from 'typeorm';
 
-@Injectable()
-export class UserRepository {
-  constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
-  ) {}
+export class UserTypeOrmRepository implements UserRepository {
+  constructor(private readonly userRepository: Repository<User>) {}
 
-  public async getAll(): Promise<User[]> {
+  public async findAll(): Promise<User[]> {
     return await this.userRepository.find();
   }
 

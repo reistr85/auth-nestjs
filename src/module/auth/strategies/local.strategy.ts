@@ -3,7 +3,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
 import { User } from 'src/core/domain/entities/user.entity';
 import { MessagesHelper } from 'src/shared/helpers/messages.helper';
-import { ValidateUserUseCase } from 'src/use-cases/auth/validate-user.usecase';
+import { ValidateUserUseCase } from 'src/core/application/auth/validate-user.usecase';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
