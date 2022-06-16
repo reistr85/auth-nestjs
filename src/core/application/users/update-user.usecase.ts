@@ -1,9 +1,7 @@
-import { Injectable } from '@nestjs/common';
 import { UserCreatedMapper } from 'src/core/domain/mappers/users/user-created.mapper';
 import { UserRepository } from 'src/core/domain/repositories/user.repository';
 import { UserCreatedDto, UserUpdateDto } from 'src/shared/dtos/users';
 
-@Injectable()
 export class UpdateUserUseCase {
   constructor(private readonly userRepository: UserRepository) {}
 

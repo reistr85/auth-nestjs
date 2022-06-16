@@ -11,7 +11,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { RoleGuard } from 'src/module/auth/role/role.guard';
+import { RoleGuard } from 'src/infra/modules/auth/role/role.guard';
 import { Role } from 'src/shared/decorator/role.decorator';
 import {
   UserCreatedDto,
@@ -34,6 +34,9 @@ export class UsersController {
   constructor(
     private readonly getAllUsers: GetAllUsersUseCase,
     private readonly createUser: CreateUserUseCase,
+    private readonly getUse: GetUserUsecase,
+    private readonly updateUser: UpdateUserUseCase,
+    private readonly removeUser: RemoveUserUseCase,
   ) {}
 
   // @Role(Roles.USER)
@@ -53,30 +56,30 @@ export class UsersController {
   }
 
   // @Role(Roles.USER)
-  // @Get(':id')
-  // @HttpCode(HttpCodeEnum.SUCCESS)
-  // public async findOne(
-  //   @Param('id', new ParseUUIDPipe()) id: string,
-  // ): Promise<{ user: UserCreatedDto }> {
-  //   return await this.getUse.execute(id);
-  // }
+  @Get(':id')
+  @HttpCode(HttpCodeEnum.SUCCESS)
+  public async findOne(
+    @Param('id', new ParseUUIDPipe()) id: string,
+  ): Promise<{ user: UserCreatedDto }> {
+    return await this.getUse.execute(id);
+  }
 
   // @Role(Roles.ADMIN)
-  // @Put(':id')
-  // @HttpCode(HttpCodeEnum.SUCCESS)
-  // public async update(
-  //   @Param('id', new ParseUUIDPipe()) id: string,
-  //   @Body() body: UserUpdateDto,
-  // ): Promise<{ user: UserCreatedDto }> {
-  //   return await this.updateUser.execute(id, body);
-  // }
+  @Put(':id')
+  @HttpCode(HttpCodeEnum.SUCCESS)
+  public async update(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Body() body: UserUpdateDto,
+  ): Promise<{ user: UserCreatedDto }> {
+    return await this.updateUser.execute(id, body);
+  }
 
   // @Role(Roles.ADMIN)
-  // @Delete(':id')
-  // @HttpCode(HttpCodeEnum.NO_CONTENT)
-  // public async delete(
-  //   @Param('id', new ParseUUIDPipe()) id: string,
-  // ): Promise<void> {
-  //   await this.removeUser.execute(id);
-  // }
+  @Delete(':id')
+  @HttpCode(HttpCodeEnum.NO_CONTENT)
+  public async delete(
+    @Param('id', new ParseUUIDPipe()) id: string,
+  ): Promise<void> {
+    await this.removeUser.execute(id);
+  }
 }

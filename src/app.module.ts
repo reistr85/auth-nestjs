@@ -3,9 +3,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { ConfigModule } from '@nestjs/config';
 import { setEnvironment } from './infra/environments';
-import { UsersModule } from './module/users/users.modules';
+import { UsersModule } from './infra/modules/users/users.modules';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-import { AuthModule } from './module/auth/auth.module';
+import { AuthModule } from './infra/modules/auth/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
