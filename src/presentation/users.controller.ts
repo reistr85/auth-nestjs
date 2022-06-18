@@ -29,7 +29,7 @@ import {
 import { RemoveUserUseCase } from 'src/core/application/users/remove-user.usecase';
 
 @Controller('/users')
-// @UseGuards(AuthGuard('jwt'), RoleGuard)
+@UseGuards(AuthGuard('jwt'), RoleGuard)
 export class UsersController {
   constructor(
     private readonly getAllUsers: GetAllUsersUseCase,
@@ -39,14 +39,14 @@ export class UsersController {
     private readonly removeUser: RemoveUserUseCase,
   ) {}
 
-  // @Role(Roles.USER)
+  @Role(Roles.USER)
   @Get()
   @HttpCode(HttpCodeEnum.SUCCESS)
   public async findAll(): Promise<{ users: UserCreatedDto[] }> {
     return await this.getAllUsers.execute();
   }
 
-  // @Role(Roles.ADMIN)
+  @Role(Roles.ADMIN)
   @Post()
   @HttpCode(HttpCodeEnum.CREATED)
   public async create(
@@ -55,7 +55,7 @@ export class UsersController {
     return await this.createUser.execute(body);
   }
 
-  // @Role(Roles.USER)
+  @Role(Roles.USER)
   @Get(':id')
   @HttpCode(HttpCodeEnum.SUCCESS)
   public async findOne(
@@ -64,7 +64,7 @@ export class UsersController {
     return await this.getUse.execute(id);
   }
 
-  // @Role(Roles.ADMIN)
+  @Role(Roles.ADMIN)
   @Put(':id')
   @HttpCode(HttpCodeEnum.SUCCESS)
   public async update(
@@ -74,7 +74,7 @@ export class UsersController {
     return await this.updateUser.execute(id, body);
   }
 
-  // @Role(Roles.ADMIN)
+  @Role(Roles.ADMIN)
   @Delete(':id')
   @HttpCode(HttpCodeEnum.NO_CONTENT)
   public async delete(

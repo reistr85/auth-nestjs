@@ -13,7 +13,7 @@ export class AuthController {
   @HttpCode(HttpCodeEnum.SUCCESS)
   async login(@Req() req): Promise<TokenDto> {
     const { id, email } = req.user;
-    const role = req.user.role.label;
+    const role: string = req.user.role.label;
     return this.loginUseCase.execute({ id, email, role });
   }
 }

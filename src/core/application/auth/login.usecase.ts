@@ -1,12 +1,10 @@
-import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { LoginUserDto } from 'src/shared/dtos/auth/login-user.dto';
 
-@Injectable()
 export class LoginUseCase {
   constructor(private readonly jwtService: JwtService) {}
 
-  public async execute(loginUserDto: LoginUserDto) {
+  public async execute(loginUserDto: LoginUserDto): Promise<{ token: string }> {
     const payload = {
       sub: loginUserDto.id,
       email: loginUserDto.email,
